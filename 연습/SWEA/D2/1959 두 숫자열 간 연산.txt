@@ -1,0 +1,66 @@
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+
+class Solution
+{
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+ 
+		int T = sc.nextInt();
+		for(int t=0; t<T; t++){
+ 
+			int N = sc.nextInt();
+			int M = sc.nextInt();
+			int[] arr_N = new int[N];
+			int[] arr_M = new int[M];
+ 
+			for (int n=0; n<N; n++){
+				arr_N[n] = sc.nextInt();
+			}
+			for (int m=0; m<M; m++){
+				arr_M[m] = sc.nextInt();
+			}
+ 
+			int max = 0;
+			if (N<M){
+				int cnt = M-N+1;
+				for(int i=0; i<cnt; i++){
+					int sum = 0;
+					for(int j=0;j<arr_N.length; j++){
+						sum += arr_N[j] * arr_M[j+i];
+					}
+					if (sum >= max) {
+						max = sum;
+					}
+				}
+			}
+			else if (N>M){
+				int cnt = N-M+1;
+				for(int i=0; i<cnt; i++){
+					int sum = 0;
+					for(int j=0;j<arr_M.length; j++){
+						sum += arr_N[j+i] * arr_M[j];
+					}
+					if (sum >= max) {
+						max = sum;
+					}
+				}
+			}
+			else {
+				int sum = 0;
+				for(int i=0; i<arr_N.length; i++){
+					sum += arr_N[i] * arr_M[i];
+				}
+				max = sum;
+			}
+ 
+			System.out.println("#"+ (t+1) + " " + max);
+ 
+		}
+	}
+}

@@ -1,0 +1,52 @@
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Solution
+{
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+ 
+		for (int i=0; i<10; i++) {
+			int num = sc.nextInt();
+			int[][] arr = new int[100][100];
+			int max_sum = 0;
+			for (int j=0; j<100; j++){
+				int sum1 = 0;
+				for (int k=0; k<100; k++) {
+					arr[j][k] = sc.nextInt();
+					sum1 += arr[j][k];
+				}
+				if ( sum1 >= max_sum ){
+					max_sum = sum1;
+				}
+			}
+			for (int j=0; j<100; j++){
+				int sum2 = 0;
+				for (int k=0; k<100; k++){
+					sum2 += arr[k][j];
+				}
+				if (sum2 >= max_sum){
+					max_sum = sum2;
+				}
+			}
+			int sum3 = 0;
+			int sum4 = 0;
+			for (int j=0; j<100; j++){
+				sum3 += arr[j][j];
+				sum4 += arr[99-j][j];
+			}
+			if (sum3 >= max_sum){
+				max_sum = sum3;
+			}
+			if (sum4 >= max_sum) {
+				max_sum = sum4;
+			}
+ 
+			System.out.println("#" + num + " " + max_sum);
+		}
+	}
+}
